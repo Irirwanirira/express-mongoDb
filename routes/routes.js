@@ -26,29 +26,70 @@
 
 /**
  * @swagger
- * components:
- *   schemas:
- *     post:
- *       type: object
- *       required:
- *         - title
- *         - content
- *       properties:
- *         id:
- *           type: string
- *           description: The auto-generated id of the Post
- *         title:
- *           type: string
- *           description: The title of your Post
+ * tags:
+ *   name: POSTS
+ *   description: The posts managing API
+ * /posts:
+ *   get:
+ *     summary: Lists all the posts
+ *     tags: [GET]
+ *     responses:
+ *       200:
+ *         description: The list of the posts
  *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                   $ref: '#/model/Post'
+ *   post:
+ *     summary: Create a new post
+ *     tags: [POST]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/model/Post'
+ *     responses:
+ *       200:
+ *         description: The created post.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/model/Post'
+ *       500:
+ *         description: Some server error
+ * /posts/{id}:
+ *   get:
+ *     summary: Get the book by id
+ *     tags: [SINGLE POST]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
  *           type: string
- *           description: The content author
- *       example:
- *         id: d5fE_asz
- *         title: The New Turing Omnibus
- *         content: post 1
- *
- */
+ *         required: true
+ *         description: The posts id
+ *     responses:
+ *       200:
+ *         description: The post response by id
+ *         contents:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/model/Post'
+ *       404:
+ *         description: The post was not found
+ *   patch:
+ *    summary: Update the post by the id
+ *    tags: [PATCH]
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: The post id
 
 
 const express = require('express');
