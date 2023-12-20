@@ -24,6 +24,31 @@
  *
  */
 
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     post:
+ *       type: object
+ *       required:
+ *         - title
+ *         - content
+ *       properties:
+ *         id:
+ *           type: string
+ *           description: The auto-generated id of the Post
+ *         title:
+ *           type: string
+ *           description: The title of your Post
+ *         content:
+ *           type: string
+ *           description: The content author
+ *       example:
+ *         id: d5fE_asz
+ *         title: The New Turing Omnibus
+ *         content: post 1
+ *
+ */
 
 
 const express = require('express');
