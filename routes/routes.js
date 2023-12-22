@@ -90,7 +90,40 @@
  *          type: string
  *        required: true
  *        description: The post id
-
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            $ref: '#/model/Post'
+ *    responses:
+ *      200:
+ *        description: The post was updated
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/model/Post'
+ *      404:
+ *        description: The post was not found
+ *      500:
+ *        description: Some error happened
+ *   delete:
+ *     summary: Remove the post by id
+ *     tags: [DELETE]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The post id
+ *
+ *     responses:
+ *       200:
+ *         description: The post was deleted
+ *       404:
+ *         description: The post was not found
+ */
 
 const express = require('express');
 const Post = require('../models/Post');
