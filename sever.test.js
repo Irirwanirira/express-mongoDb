@@ -2,7 +2,6 @@ const mongoose = require("mongoose")
 const supertest = require('supertest');
 const createServer = require("./server")
 const Post = require("./models/Post");
-const { response } = require("express");
 
 beforeEach(async() => {
    await  mongoose.connect(
@@ -27,7 +26,6 @@ test("GET /posts", async () => {
 		.then((response) => {
 			expect(Array.isArray(response.body)).toBeTruthy()
 			expect(response.body.length).toBeTruthy()
-
             expect(response.body[0]._id).toBe(post.id)
 			expect(response.body[0].title).toBe(post.title)
 			expect(response.body[0].content).toBe(post.content)
