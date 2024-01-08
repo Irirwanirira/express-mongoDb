@@ -128,11 +128,12 @@
 const express = require('express');
 const Post = require('../models/Post');
 
+
 const router = express.Router();
 
 router.get('/posts', async (req, res) => {
   const posts = await Post.find();
-  res.send(posts);
+  res.status(200).send(posts);
 });
 
 router.post('/Posts', async (req, res) => {
@@ -141,7 +142,7 @@ router.post('/Posts', async (req, res) => {
     content: req.body.content,
   });
   await post.save();
-  res.send(post);
+  res.status(201).send(post);
 });
 
 router.get('/posts/:id', async (req, res) => {
